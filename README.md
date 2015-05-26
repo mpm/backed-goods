@@ -1,4 +1,4 @@
-# Backed Goods 2015
+# Baked Goods 2015
 
 A JavaScript port of a Turbo Pascal DOS game I created in 1995.
 
@@ -21,11 +21,11 @@ JavaScript/HTML5.
 
 The original title is _Waffle Man_. The whole waffle theme is related to
 a friend of mine whose father was running a full blown waffle factory.
-We used to hang out there, watching freshly backed waffles and cookies
+We used to hang out there, watching freshly baked waffles and cookies
 on conveyor belts.
 
 With ripened age, I find this name a bit silly now, so I changed it to
-_Backed Goods_.
+_Baked Goods_.
 
 ## How to play
 
@@ -33,7 +33,7 @@ This is work in progress. However, you can move the player around with
 the cursor keys (check out the tubes).
 
 You can either check out this repository and open `index.html` in your
-browser, or [play directly via GitHub pages](http://mpm.github.io/backed-goods/).
+browser, or [play directly via GitHub pages](http://mpm.github.io/baked-goods/).
 
 Stay tuned for updates:
 
@@ -47,7 +47,7 @@ a strong passion for one-letter variable names back then).
 
 ### Things done so far
 
-* Created binary level data into JSON
+* Converted binary level data into JSON
 * Converted artwork into `.png` file
 * Load maze and monster data from JSON
 * Draw monsters and player
@@ -57,8 +57,7 @@ a strong passion for one-letter variable names back then).
 
 * Collision detection
 * Trigger level events (keys and switches)
-* Collect backed goods, coins and bonus lifes
+* Collect baked goods, coins and bonus lifes
 * Make monsters move around
-* Advance to next level when exit is reached
 * Game states (intro screen, advancing to next level, etc.)
 
