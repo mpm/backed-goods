@@ -3,10 +3,23 @@ function getRandomInt(min, max) {
 }
 
 var MonsterBrain = function(monster) {
-  //monster.move(getRandomInt(-1, 2),
-               //getRandomInt(-1, 2));
+  //monster.changeDirection(getRandomInt(1,4));
+  //monster.move();
 };
 
+var Func = {
+  SWITCH: 6,
+  EXIT: 8
+};
+
+var Flag = {
+  isBlockedForPlayer: function(flag) {
+    return (flag & 1 == 1);
+  },
+  isBlockedForMonster: function(flag) {
+    return (flag & 1 == 2);
+  }
+};
 
 
 (function() {

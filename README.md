@@ -57,7 +57,7 @@ a strong passion for one-letter variable names back then).
 
 ### Yet to be done
 
-* Collision detection
+* Collision detection for monsters
 * Trigger level events (keys and switches)
 * Collect baked goods, coins and bonus lifes
 * Make monsters move around

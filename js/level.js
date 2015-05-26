@@ -6,7 +6,10 @@ var Level = function(level) {
     return _level.blocks.current[attribute][x * 40 + y];
   };
   var playerCollision = function(x, y) {
-    return getBlock('type', x, y) ==  Block.BRICK_RED;
+    return Flag.isBlockedForPlayer(getBlock('flags', x, y));
+  };
+  var monsterCollision = function(x, y) {
+    return Flag.isBlockedForMonster(getBlock('flags', x, y));
   };
 
   var player = new Movable(level.info.start.x, level.info.start.y,
@@ -20,6 +23,7 @@ var Level = function(level) {
                               monster.direction,
                               {
                                 type: Block.MONSTER,
+                                collisionCallback: monsterCollision,
                                 onAnimate: MonsterBrain
                               }, screen.renderMovable)
                  );
@@ -33,9 +37,8 @@ var Level = function(level) {
     }
 
     if (fn == Func.SWITCH) {
-      // Handle Switch
+      console.log('switch toggled');
     }
-
   };
 
   return {
