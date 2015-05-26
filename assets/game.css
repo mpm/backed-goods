@@ -1,0 +1,28 @@
+#screen {
+  perspective: 20px;
+}
+
+.layer {
+  height: 800px;
+  width: 1280px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#transform {
+  /*transform: rotateX(1deg);*/
+}
+
+#maze {
+  background: #333;
+  z-index: 1;
+}
+
+#sprites {
+  z-index: 2;
+}
+
+#sprite-library {
+  display: none;
+}
