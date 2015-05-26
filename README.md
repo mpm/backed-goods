@@ -6,7 +6,7 @@ A JavaScript port of a Turbo Pascal DOS game I created in 1995.
 
 This is a fun project to learn a bit about HTML5 and the canvas element.
 
-I created this game back in 1995. In was written in Turbo Pascal and
+I created this game back in 1995. It was written in Turbo Pascal and
 running under DOS.
 
 While the game mechanic itself is not very complicated, a good part of
@@ -28,6 +28,8 @@ With ripened age, I find this name a bit silly now, so I changed it to
 _Baked Goods_.
 
 ## How to play
+
+The gameplay itself was inspired by [Rock 'n' Roll](http://en.wikipedia.org/wiki/Rock_%27n%27_Roll_%28video_game%29).
 
 This is work in progress. However, you can move the player around with
 the cursor keys (check out the tubes).
