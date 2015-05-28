@@ -17,7 +17,7 @@ var Flag = {
     return (flag & 1 == 1);
   },
   isBlockedForMonster: function(flag) {
-    return (flag & 1 == 2);
+    return (flag & 2 == 2);
   }
 };
 
