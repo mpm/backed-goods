@@ -34,17 +34,14 @@ var Movable = function(x, y, direction, options, renderCallback) {
         var plannedTargetX = _targetX + relativeX * factor;
         var plannedTargetY = _targetY + relativeY * factor;
 
-        var blocked = false;
-        if (options.collisionCallback) {
-          blocked = options.collisionCallback(plannedTargetX / factor, plannedTargetY / factor);
+        if (options.collisionCallback &&
+            options.collisionCallback(plannedTargetX / factor, plannedTargetY / factor)) {
+          return false;
         }
 
-        if (!blocked) {
-          _targetX = plannedTargetX;
-          _targetY = plannedTargetY;
-          _moving = true;
-        }
-        return !blocked;
+        _targetX = plannedTargetX;
+        _targetY = plannedTargetY;
+        _moving = true;
       }
     },
     animate: function() {

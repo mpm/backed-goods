@@ -3,8 +3,9 @@ function getRandomInt(min, max) {
 }
 
 var MonsterBrain = function(monster) {
-  //monster.changeDirection(getRandomInt(1,4));
-  //monster.move();
+  if (monster.move() === false) {
+    monster.changeDirection(getRandomInt(1,5));
+  }
 };
 
 var Func = {
