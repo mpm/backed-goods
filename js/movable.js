@@ -18,17 +18,13 @@ var Movable = function(x, y, direction, options, renderCallback) {
     move: function() {
       switch (direction) {
         case Direction.LEFT:
-          this._move(-1, 0);
-          break;
+          return this._move(-1, 0);
         case Direction.RIGHT:
-          this._move(1, 0);
-          break;
+          return this._move(1, 0);
         case Direction.UP:
-          this._move(0, -1);
-          break;
+          return this._move(0, -1);
         case Direction.DOWN:
-          this._move(0, 1);
-          break;
+          return this._move(0, 1);
       }
     },
     _move: function(relativeX, relativeY) {
@@ -48,6 +44,7 @@ var Movable = function(x, y, direction, options, renderCallback) {
           _targetY = plannedTargetY;
           _moving = true;
         }
+        return !blocked;
       }
     },
     animate: function() {
