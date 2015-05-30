@@ -1,4 +1,5 @@
 var Block = {
+  EMPTY: 0,
   PLAYER: 1,
   MONSTER: 10,
   BRICK_WHITE: 11,
