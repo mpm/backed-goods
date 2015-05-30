@@ -52,10 +52,13 @@ var Movable = function(x, y, direction, options, renderCallback) {
         if (_x < _targetX) { _x += speed; }
         if (_x > _targetX) { _x -= speed; }
         if (_y < _targetY) { _y += speed; }
-        if (_y > _targetY) { _y -= speed }
+        if (_y > _targetY) { _y -= speed; }
 
         if (_moving && _x == _targetX && _y == _targetY) {
           _moving = false;
+          if (options.destinationCallback) {
+            options.destinationCallback(_targetX / factor, _targetY / factor, this);
+          }
           // TODO: nur fuer player
           if (options.getBlock) {
             var t = options.getBlock('type', _x / factor, _y / factor);
