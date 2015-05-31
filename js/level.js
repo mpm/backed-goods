@@ -4,13 +4,21 @@ var Level = function(level) {
   var score = {
     snacks: 0,
     coins: 0,
-    lifes: 0
+    lifes: 0,
+
+    redKey: false,
+    greenKey: false,
+    blueKey: false
   };
 
   var monsters = [];
 
   var getBlock = function(attribute, x, y) {
     return _level.blocks.current[attribute][x * 40 + y];
+  };
+
+  var setBlock = function(attribute, x, y, value) {
+    _level.blocks.current[attribute][x * 40 + y] = value;
   };
 
   var playerCollision = function(x, y) {
@@ -21,20 +29,41 @@ var Level = function(level) {
     return Flag.isBlockedForMonster(getBlock('flags', x, y));
   };
 
-  var playerDestination = function(x, y, player) {
+  var handleBlock = function(x, y) {
     var block = getBlock('type', x, y);
+    var func = getBlock('func', x, y);
 
-    if (block == Block.ITEM_COIN) {
-      _level.blocks.current.type[x * 40 + y] = Block.EMPTY;
-      score.snacks += 1;
-      _drawMaze();
+    switch (block) {
+      case Block.ITEM_COIN:
+        setBlock('type', x, y, Block.EMPTY);
+        score.coins += 1;
+        _drawMaze();
+        break;
+      case Block.ITEM_SNACK:
+        setBlock('type', x, y, Block.EMPTY);
+        score.snacks += 1;
+        _drawMaze();
+        break;
+      case Block.ITEM_LIFE:
+        setBlock('type', x, y, Block.EMPTY);
+        score.lifes += 1;
+        _drawMaze();
+        break;
+    }
+
+    if (func == Func.EXIT) {
+      console.log('exit reached');
+    }
+
+    if (func == Func.SWITCH) {
+      console.log('switch toggled');
     }
   };
 
   var player = new Movable(level.info.start.x, level.info.start.y,
                            Direction.LEFT, {type: Block.PLAYER,
                             collisionCallback: playerCollision,
-                            destinationCallback: playerDestination,
+                            destinationCallback: handleBlock,
                              getBlock: getBlock},
                            screen.renderMovable);
 
@@ -48,18 +77,6 @@ var Level = function(level) {
                               }, screen.renderMovable)
                  );
   });
-
-  var handleBlock = function(x, y) {
-    var fn = getBlock('func', x, y);
-
-    if (fn == Func.EXIT) {
-      console.log('exit reached');
-    }
-
-    if (fn == Func.SWITCH) {
-      console.log('switch toggled');
-    }
-  };
 
   var _drawMaze = function() {
       screen.clearLayer('maze');
