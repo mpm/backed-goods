@@ -35,7 +35,7 @@ var Movable = function(x, y, direction, options, renderCallback) {
         var plannedTargetY = _targetY + relativeY * factor;
 
         if (options.collisionCallback &&
-            options.collisionCallback(plannedTargetX / factor, plannedTargetY / factor)) {
+            options.collisionCallback(plannedTargetX / factor, plannedTargetY / factor, direction)) {
           return false;
         }
 
