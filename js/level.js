@@ -83,6 +83,7 @@ var Level = function(level) {
     }
 
     if (func == Func.EXIT) {
+      handleSwtich();
       console.log('exit reached');
     }
 
