@@ -10,18 +10,12 @@ var MonsterBrain = function(monster) {
 
 var Func = {
   SWITCH: 6,
+
+  // not really necessary to check, but part of the original sources
+  SWITCHABLE: 7,
+
   EXIT: 8
 };
-
-var Flag = {
-  isBlockedForPlayer: function(flag) {
-    return (flag & 1 == 1);
-  },
-  isBlockedForMonster: function(flag) {
-    return (flag & 2 == 2);
-  }
-};
-
 
 (function() {
     var pressedKeys = {};
