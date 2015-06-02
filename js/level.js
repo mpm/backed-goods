@@ -48,32 +48,7 @@ var Level = function(level) {
     var blocked = Flag.isBlockedForPlayer(getBlock('flags', x, y));
 
     if (Block.isPipe(blockType)) {
-      switch(direction) {
-        case Direction.LEFT:
-          return !(blockType == Block.PIPE_HORIZONTAL ||
-                 blockType == Block.PIPE_RIGHT_DOWN ||
-                 blockType == Block.PIPE_RIGHT_UP ||
-                 blockType == Block.PIPE_RIGHT_END ||
-                 blockType == Block.PIPE_JUNCTION);
-        case Direction.RIGHT:
-          return !(blockType == Block.PIPE_HORIZONTAL ||
-                 blockType == Block.PIPE_LEFT_DOWN ||
-                 blockType == Block.PIPE_LEFT_UP ||
-                 blockType == Block.PIPE_LEFT_END ||
-                 blockType == Block.PIPE_JUNCTION);
-        case Direction.UP:
-          return !(blockType == Block.PIPE_VERTICAL ||
-                 blockType == Block.PIPE_LEFT_DOWN ||
-                 blockType == Block.PIPE_RIGHT_DOWN ||
-                 blockType == Block.PIPE_DOWN_END ||
-                 blockType == Block.PIPE_JUNCTION);
-        case Direction.DOWN:
-          return !(blockType == Block.PIPE_VERTICAL ||
-                 blockType == Block.PIPE_LEFT_UP ||
-                 blockType == Block.PIPE_RIGHT_UP ||
-                 blockType == Block.PIPE_UP_END ||
-                 blockType == Block.PIPE_JUNCTION);
-      }
+      return !Block.isPassable(blockType, direction)
     }
     return blocked;
   };

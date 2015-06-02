@@ -57,10 +57,42 @@ var Block = {
   PIPE_JUNCTION: 50,
   PIPE_UP_END: 51,
   PIPE_DOWN_END: 52,
-  PIPE_LEFT_END: 53,
-  PIPE_RIGHT_END: 54,
+  PIPE_RIGHT_END: 53,
+  PIPE_LEFT_END: 54,
 
   isPipe: function(type) {
-    return (type >= this.PIPE_HORIZONTAL && type <= this.PIPE_RIGHT_END);
+    return (type >= this.PIPE_HORIZONTAL && type <= this.PIPE_LEFT_END);
+  },
+
+  isPassable: function(blockType, direction) {
+    switch(direction) {
+      case Direction.LEFT:
+        return (blockType == Block.PIPE_HORIZONTAL ||
+               blockType == Block.PIPE_RIGHT_DOWN ||
+               blockType == Block.PIPE_RIGHT_UP ||
+               blockType == Block.PIPE_RIGHT_END ||
+               blockType == Block.PIPE_LEFT_END ||
+               blockType == Block.PIPE_JUNCTION);
+      case Direction.RIGHT:
+        return (blockType == Block.PIPE_HORIZONTAL ||
+               blockType == Block.PIPE_LEFT_DOWN ||
+               blockType == Block.PIPE_LEFT_UP ||
+               blockType == Block.PIPE_LEFT_END ||
+               blockType == Block.PIPE_RIGHT_END ||
+               blockType == Block.PIPE_JUNCTION);
+      case Direction.UP:
+        return (blockType == Block.PIPE_VERTICAL ||
+               blockType == Block.PIPE_LEFT_DOWN ||
+               blockType == Block.PIPE_RIGHT_DOWN ||
+               blockType == Block.PIPE_DOWN_END ||
+               blockType == Block.PIPE_JUNCTION);
+      case Direction.DOWN:
+        return (blockType == Block.PIPE_VERTICAL ||
+               blockType == Block.PIPE_LEFT_UP ||
+               blockType == Block.PIPE_RIGHT_UP ||
+               blockType == Block.PIPE_UP_END ||
+               blockType == Block.PIPE_JUNCTION);
+    }
+    return false;
   }
 };
