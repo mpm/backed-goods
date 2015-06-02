@@ -21,7 +21,7 @@ var Level = function(level) {
     _level.blocks.current[attribute][x * 40 + y] = value;
   };
 
-  var switchBlocks = function(flags) {
+  var switchBlocksById = function(flags) {
     var switchId = Flag.getSwitchId(flags);
     var currentBlocks = _level.blocks.current;
     var altBlocks = _level.blocks.alternate;
@@ -41,6 +41,29 @@ var Level = function(level) {
         altBlocks.type[blockNr] = originalBlock.type;
       }
     }
+  };
+
+  var triggerSwitch = function(x, y) {
+    var flags = getBlock('flags', x, y);
+    switchBlocksById(flags);
+
+    var type = getBlock('type', x, y);
+    switch (type) {
+      case Block.SWITCH1_ON:
+        type = Block.SWITCH1_OFF;
+        break;
+      case Block.SWITCH1_OFF:
+        type = Block.SWITCH1_ON;
+        break;
+      case Block.SWITCH2_ON:
+        type = Block.SWITCH2_OFF;
+        break;
+      case Block.SWITCH2_OFF:
+        type = Block.SWITCH2_ON;
+        break;
+    }
+    setBlock('type', x, y, type);
+    _drawMaze();
   };
 
   var playerCollision = function(x, y, direction) {
@@ -84,7 +107,7 @@ var Level = function(level) {
     }
 
     if (func == Func.SWITCH) {
-      switchBlocks(getBlock('flags', x, y));
+      triggerSwitch(x, y);
       _drawMaze();
     }
   };
