@@ -47,8 +47,8 @@ var Level = function(level) {
     var blockType = getBlock('type', x, y);
     var blocked = Flag.isBlockedForPlayer(getBlock('flags', x, y));
 
-    if (Block.isPipe(blockType)) {
-      return !Block.isPassable(blockType, direction)
+    if (blocked && Block.isPipe(blockType)) {
+      return !Block.isPipePassable(blockType, direction);
     }
     return blocked;
   };

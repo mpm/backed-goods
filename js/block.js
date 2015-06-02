@@ -64,34 +64,38 @@ var Block = {
     return (type >= this.PIPE_HORIZONTAL && type <= this.PIPE_LEFT_END);
   },
 
-  isPassable: function(blockType, direction) {
+  _isPipeVerticallyPassable: function(blockType) {
+    return (blockType == Block.PIPE_VERTICAL ||
+            blockType == Block.PIPE_UP_END ||
+            blockType == Block.PIPE_DOWN_END ||
+            blockType == Block.PIPE_JUNCTION);
+  },
+
+  _isPipeHorizontallyPassable: function(blockType) {
+    return (blockType == Block.PIPE_HORIZONTAL ||
+            blockType == Block.PIPE_RIGHT_END ||
+            blockType == Block.PIPE_LEFT_END ||
+            blockType == Block.PIPE_JUNCTION);
+  },
+
+  isPipePassable: function(blockType, direction) {
     switch(direction) {
       case Direction.LEFT:
-        return (blockType == Block.PIPE_HORIZONTAL ||
+        return (this._isPipeHorizontallyPassable(blockType) ||
                blockType == Block.PIPE_RIGHT_DOWN ||
-               blockType == Block.PIPE_RIGHT_UP ||
-               blockType == Block.PIPE_RIGHT_END ||
-               blockType == Block.PIPE_LEFT_END ||
-               blockType == Block.PIPE_JUNCTION);
+               blockType == Block.PIPE_RIGHT_UP);
       case Direction.RIGHT:
-        return (blockType == Block.PIPE_HORIZONTAL ||
+        return (this._isPipeHorizontallyPassable(blockType) ||
                blockType == Block.PIPE_LEFT_DOWN ||
-               blockType == Block.PIPE_LEFT_UP ||
-               blockType == Block.PIPE_LEFT_END ||
-               blockType == Block.PIPE_RIGHT_END ||
-               blockType == Block.PIPE_JUNCTION);
+               blockType == Block.PIPE_LEFT_UP);
       case Direction.UP:
-        return (blockType == Block.PIPE_VERTICAL ||
+        return (this._isPipeVerticallyPassable(blockType) ||
                blockType == Block.PIPE_LEFT_DOWN ||
-               blockType == Block.PIPE_RIGHT_DOWN ||
-               blockType == Block.PIPE_DOWN_END ||
-               blockType == Block.PIPE_JUNCTION);
+               blockType == Block.PIPE_RIGHT_DOWN);
       case Direction.DOWN:
-        return (blockType == Block.PIPE_VERTICAL ||
+        return (this._isPipeVerticallyPassable(blockType) ||
                blockType == Block.PIPE_LEFT_UP ||
-               blockType == Block.PIPE_RIGHT_UP ||
-               blockType == Block.PIPE_UP_END ||
-               blockType == Block.PIPE_JUNCTION);
+               blockType == Block.PIPE_RIGHT_UP);
     }
     return false;
   }
