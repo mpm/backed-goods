@@ -18,6 +18,7 @@ function gameLoop() {
     player.move();
   }
   currentLevel.drawMovables();
+  currentLevel.drawMaze();
   requestAnimationFrame(gameLoop);
 }
 

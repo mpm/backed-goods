@@ -13,6 +13,12 @@ var Level = function(level) {
 
   var monsters = [];
 
+  var _needsRedraw = true;
+
+  var triggerRedraw = function() {
+    _needsRedraw = true;
+  };
+
   var getBlock = function(attribute, x, y) {
     return _level.blocks.current[attribute][x * 40 + y];
   };
@@ -63,7 +69,7 @@ var Level = function(level) {
         break;
     }
     setBlock('type', x, y, type);
-    _drawMaze();
+    triggerRedraw();
   };
 
   var playerCollision = function(x, y, direction) {
@@ -88,17 +94,17 @@ var Level = function(level) {
       case Block.ITEM_COIN:
         setBlock('type', x, y, Block.EMPTY);
         score.coins += 1;
-        _drawMaze();
+        triggerRedraw();
         break;
       case Block.ITEM_SNACK:
         setBlock('type', x, y, Block.EMPTY);
         score.snacks += 1;
-        _drawMaze();
+        triggerRedraw();
         break;
       case Block.ITEM_LIFE:
         setBlock('type', x, y, Block.EMPTY);
         score.lifes += 1;
-        _drawMaze();
+        triggerRedraw();
         break;
     }
 
@@ -108,7 +114,7 @@ var Level = function(level) {
 
     if (func == Func.SWITCH) {
       triggerSwitch(x, y);
-      _drawMaze();
+      triggerRedraw();
     }
   };
 
@@ -131,19 +137,24 @@ var Level = function(level) {
   });
 
   var _drawMaze = function() {
-      screen.clearLayer('maze');
-      for(var y = 0; y < 40; y++) {
-        for(var x = 0; x < 64; x++) {
-          screen.drawBlock('maze', x, y, getBlock('type', x, y));
-        }
+    screen.clearLayer('maze');
+    for(var y = 0; y < 40; y++) {
+      for(var x = 0; x < 64; x++) {
+        screen.drawBlock('maze', x, y, getBlock('type', x, y));
       }
+    }
+    _needsRedraw = false;
   };
 
 
   return {
     player: player,
 
-    drawMaze: _drawMaze,
+    drawMaze: function(forceRedraw) {
+      if (_needsRedraw || forceRedraw) {
+        _drawMaze();
+      }
+    },
 
     drawMovables: function() {
       monsters.forEach(function(monster) {
