@@ -1,4 +1,5 @@
 var Level = function(level) {
+  var _active = true;
   var screen = new Screen();
   var _level = level;
   var _onExit = null;
@@ -74,24 +75,17 @@ var Level = function(level) {
 
   var unlockDoor = function(blockType, x, y) {
     var unlocked = false;
-    if (blockType == Block.DOOR2_RED && score.redKey) {
-      score.redKey = false;
-      unlocked = true;
-    } else if (blockType == Block.DOOR2_GREEN && score.greenKey) {
-      score.greenKey = false;
-      unlocked = true;
-    } else if (blockType == Block.DOOR2_BLUE && score.blueKey) {
-      score.blueKey = false;
-      unlocked = true;
-    }
+    if ((blockType == Block.DOOR2_RED && score.redKey) ||
+        (blockType == Block.DOOR2_GREEN && score.greenKey) ||
+        (blockType == Block.DOOR2_BLUE && score.blueKey)) {
 
-    if (unlocked) {
       setBlock('type', x, y, Block.DOOR2_OPENED);
       setBlock('flags', x, y, 0);
       triggerRedraw();
       return true;
+    } else {
+      return false;
     }
-    return false;
   };
 
   var playerCollision = function(x, y, direction) {
@@ -150,6 +144,7 @@ var Level = function(level) {
     }
 
     if (func == Func.EXIT && _onExit) {
+      _active = false;
       _onExit(score);
     }
 
@@ -206,6 +201,10 @@ var Level = function(level) {
 
     onExit: function(callback) {
       _onExit = callback;
+    },
+
+    isActive: function() {
+      return _active;
     }
   };
 };

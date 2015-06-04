@@ -32,7 +32,7 @@ var Block = {
   ARROW_RIGHT: 31,
 
   TILE_BLANK: 32,
-  FORCE: 33,
+  ITEM_FORCE: 33,
   KEY_RED: 34,
   KEY_GREEN: 35,
   KEY_BLUE: 36,
@@ -59,6 +59,21 @@ var Block = {
   PIPE_DOWN_END: 52,
   PIPE_RIGHT_END: 53,
   PIPE_LEFT_END: 54,
+
+  BLUE_TUNNEL_VERTICAL: 55,
+
+  ITEM_COIN_BG2: 56,
+  ITEM_LIFE_BG2: 57,
+  ITEM_SNACK_BG2: 58,
+  ITEM_FORCE_BG2: 59,
+
+  KEY_RED_BG2: 60,
+  KEY_GREEN_BG2: 61,
+  KEY_BLUE_BG2: 62,
+
+  POLE_BG2: 63,
+
+  WIRING: 64,
 
   isPipe: function(type) {
     return (type >= this.PIPE_HORIZONTAL && type <= this.PIPE_LEFT_END);
