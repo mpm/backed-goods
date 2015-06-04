@@ -1,6 +1,7 @@
 var Level = function(level) {
   var screen = new Screen();
   var _level = level;
+  var _onExit = null;
   var score = {
     snacks: 0,
     coins: 0,
@@ -148,8 +149,8 @@ var Level = function(level) {
         break;
     }
 
-    if (func == Func.EXIT) {
-      console.log('exit reached');
+    if (func == Func.EXIT && _onExit) {
+      _onExit(score);
     }
 
     if (func == Func.SWITCH) {
@@ -201,6 +202,10 @@ var Level = function(level) {
         monster.animate();
       });
       player.animate();
+    },
+
+    onExit: function(callback) {
+      _onExit = callback;
     }
   };
 };
