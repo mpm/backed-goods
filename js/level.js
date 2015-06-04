@@ -71,12 +71,38 @@ var Level = function(level) {
     triggerRedraw();
   };
 
+  var unlockDoor = function(blockType, x, y) {
+    var unlocked = false;
+    if (blockType == Block.DOOR2_RED && score.redKey) {
+      score.redKey = false;
+      unlocked = true;
+    } else if (blockType == Block.DOOR2_GREEN && score.greenKey) {
+      score.greenKey = false;
+      unlocked = true;
+    } else if (blockType == Block.DOOR2_BLUE && score.blueKey) {
+      score.blueKey = false;
+      unlocked = true;
+    }
+
+    if (unlocked) {
+      setBlock('type', x, y, Block.DOOR2_OPENED);
+      setBlock('flags', x, y, 0);
+      triggerRedraw();
+      return true;
+    }
+    return false;
+  };
+
   var playerCollision = function(x, y, direction) {
     var blockType = getBlock('type', x, y);
     var blocked = Flag.isBlockedForPlayer(getBlock('flags', x, y));
 
-    if (blocked && Block.isPipe(blockType)) {
-      return !Block.isPipePassable(blockType, direction);
+    if (blocked) {
+      if (Block.isPipe(blockType)) {
+        return !Block.isPipePassable(blockType, direction);
+      } else if (Block.isLockedDoor(blockType)) {
+        return !unlockDoor(blockType, x, y);
+      }
     }
     return blocked;
   };

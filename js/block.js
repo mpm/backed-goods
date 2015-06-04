@@ -98,5 +98,11 @@ var Block = {
                blockType == Block.PIPE_RIGHT_UP);
     }
     return false;
+  },
+
+  isLockedDoor: function(blockType) {
+    return blockType == Block.DOOR2_RED ||
+           blockType == Block.DOOR2_BLUE ||
+           blockType == Block.DOOR2_GREEN;
   }
 };
