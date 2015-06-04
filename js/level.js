@@ -31,20 +31,19 @@ var Level = function(level) {
     var switchId = Flag.getSwitchId(flags);
     var currentBlocks = _level.blocks.current;
     var altBlocks = _level.blocks.alternate;
+
+    var switchBlock = function(blockNr, field) {
+      _.each(['type', 'func', 'flags'], function(field) {
+        var current = _.clone(currentBlocks[field][blockNr]);
+        currentBlocks[field][blockNr] = _.clone(altBlocks[field][blockNr]);
+        altBlocks[field][blockNr] = current;
+      });
+    };
+
     for (blockNr = 0; blockNr < currentBlocks.type.length; blockNr++) {
       if (altBlocks.func[blockNr] == Func.SWITCHABLE &&
         Flag.getSwitchId(altBlocks.flags[blockNr]) == switchId) {
-        var originalBlock = {
-          flags: _.clone(currentBlocks.flags[blockNr]),
-          func: _.clone(currentBlocks.func[blockNr]),
-          type: _.clone(currentBlocks.type[blockNr])
-        };
-        currentBlocks.flags[blockNr] = altBlocks.flags[blockNr];
-        currentBlocks.func[blockNr] = altBlocks.func[blockNr];
-        currentBlocks.type[blockNr] = altBlocks.type[blockNr];
-        altBlocks.flags[blockNr] = originalBlock.flags;
-        altBlocks.func[blockNr] = originalBlock.func;
-        altBlocks.type[blockNr] = originalBlock.type;
+        switchBlock(blockNr);
       }
     }
   };
