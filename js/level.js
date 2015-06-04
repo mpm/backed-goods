@@ -111,32 +111,32 @@ var Level = function(level) {
     var func = getBlock('func', x, y);
 
     switch (block) {
-      case Block.ITEM_COIN:
+      case Block.ITEM_COIN, Block.ITEM_COIN_BG2:
         setBlock('type', x, y, Block.EMPTY);
         score.coins += 1;
         triggerRedraw();
         break;
-      case Block.ITEM_SNACK:
+      case Block.ITEM_SNACK, Block.ITEM_SNACK_BG2:
         setBlock('type', x, y, Block.EMPTY);
         score.snacks += 1;
         triggerRedraw();
         break;
-      case Block.ITEM_LIFE:
+      case Block.ITEM_LIFE, Block.ITEM_LIFE_BG2:
         setBlock('type', x, y, Block.EMPTY);
         score.lifes += 1;
         triggerRedraw();
         break;
-      case Block.KEY_RED:
+      case Block.KEY_RED, Block.KEY_RED_BG2:
         setBlock('type', x, y, Block.EMPTY);
         score.redKey = true;
         triggerRedraw();
         break;
-      case Block.KEY_GREEN:
+      case Block.KEY_GREEN, Block.KEY_GREEN_BG2:
         setBlock('type', x, y, Block.EMPTY);
         score.greenKey = true;
         triggerRedraw();
         break;
-      case Block.KEY_BLUE:
+      case Block.KEY_BLUE, Block.KEY_BLUE_BG2:
         setBlock('type', x, y, Block.EMPTY);
         score.blueKey = true;
         triggerRedraw();
