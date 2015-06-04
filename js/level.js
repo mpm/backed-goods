@@ -105,6 +105,21 @@ var Level = function(level) {
         score.lifes += 1;
         triggerRedraw();
         break;
+      case Block.KEY_RED:
+        setBlock('type', x, y, Block.EMPTY);
+        score.redKey = true;
+        triggerRedraw();
+        break;
+      case Block.KEY_GREEN:
+        setBlock('type', x, y, Block.EMPTY);
+        score.greenKey = true;
+        triggerRedraw();
+        break;
+      case Block.KEY_BLUE:
+        setBlock('type', x, y, Block.EMPTY);
+        score.blueKey = true;
+        triggerRedraw();
+        break;
     }
 
     if (func == Func.EXIT) {
