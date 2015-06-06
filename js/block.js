@@ -75,6 +75,10 @@ var Block = {
 
   WIRING: 64,
 
+  getBackground: function(type) {
+    return type < Block.ITEM_COIN_BG2 ? Block.EMPTY : Block.FLOOR2;
+  },
+
   isPipe: function(type) {
     return (type >= this.PIPE_HORIZONTAL && type <= this.PIPE_LEFT_END);
   },
