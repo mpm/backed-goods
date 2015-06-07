@@ -1,6 +1,8 @@
 var Level = function(level) {
+  var _active = true;
   var screen = new Screen();
   var _level = level;
+  var _onExit = null;
   var score = {
     snacks: 0,
     coins: 0,
@@ -71,12 +73,31 @@ var Level = function(level) {
     triggerRedraw();
   };
 
+  var unlockDoor = function(blockType, x, y) {
+    var unlocked = false;
+    if ((blockType == Block.DOOR2_RED && score.redKey) ||
+        (blockType == Block.DOOR2_GREEN && score.greenKey) ||
+        (blockType == Block.DOOR2_BLUE && score.blueKey)) {
+
+      setBlock('type', x, y, Block.DOOR2_OPENED);
+      setBlock('flags', x, y, 0);
+      triggerRedraw();
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   var playerCollision = function(x, y, direction) {
     var blockType = getBlock('type', x, y);
     var blocked = Flag.isBlockedForPlayer(getBlock('flags', x, y));
 
-    if (blocked && Block.isPipe(blockType)) {
-      return !Block.isPipePassable(blockType, direction);
+    if (blocked) {
+      if (Block.isPipe(blockType)) {
+        return !Block.isPipePassable(blockType, direction);
+      } else if (Block.isLockedDoor(blockType)) {
+        return !unlockDoor(blockType, x, y);
+      }
     }
     return blocked;
   };
@@ -91,24 +112,46 @@ var Level = function(level) {
 
     switch (block) {
       case Block.ITEM_COIN:
-        setBlock('type', x, y, Block.EMPTY);
+      case Block.ITEM_COIN_BG2:
+        setBlock('type', x, y, Block.getBackground(block));
         score.coins += 1;
         triggerRedraw();
         break;
       case Block.ITEM_SNACK:
-        setBlock('type', x, y, Block.EMPTY);
+      case Block.ITEM_SNACK_BG2:
+        setBlock('type', x, y, Block.getBackground(block));
         score.snacks += 1;
         triggerRedraw();
         break;
       case Block.ITEM_LIFE:
-        setBlock('type', x, y, Block.EMPTY);
+      case Block.ITEM_LIFE_BG2:
+        setBlock('type', x, y, Block.getBackground(block));
         score.lifes += 1;
+        triggerRedraw();
+        break;
+      case Block.KEY_RED:
+      case Block.KEY_RED_BG2:
+        setBlock('type', x, y, Block.getBackground(block));
+        score.redKey = true;
+        triggerRedraw();
+        break;
+      case Block.KEY_GREEN:
+      case Block.KEY_GREEN_BG2:
+        setBlock('type', x, y, Block.getBackground(block));
+        score.greenKey = true;
+        triggerRedraw();
+        break;
+      case Block.KEY_BLUE:
+      case Block.KEY_BLUE_BG2:
+        setBlock('type', x, y, Block.getBackground(block));
+        score.blueKey = true;
         triggerRedraw();
         break;
     }
 
-    if (func == Func.EXIT) {
-      console.log('exit reached');
+    if (func == Func.EXIT && _onExit) {
+      _active = false;
+      _onExit(score);
     }
 
     if (func == Func.SWITCH) {
@@ -116,6 +159,17 @@ var Level = function(level) {
       triggerRedraw();
     }
   };
+
+  var _drawMaze = function() {
+    screen.clearLayer('maze');
+    for(var y = 0; y < 40; y++) {
+      for(var x = 0; x < 64; x++) {
+        screen.drawBlock('maze', x, y, getBlock('type', x, y));
+      }
+    }
+    _needsRedraw = false;
+  };
+
 
   var player = new Movable(level.info.start.x, level.info.start.y,
                            Direction.LEFT, {type: Block.PLAYER,
@@ -135,19 +189,13 @@ var Level = function(level) {
                  );
   });
 
-  var _drawMaze = function() {
-    screen.clearLayer('maze');
-    for(var y = 0; y < 40; y++) {
-      for(var x = 0; x < 64; x++) {
-        screen.drawBlock('maze', x, y, getBlock('type', x, y));
-      }
-    }
-    _needsRedraw = false;
-  };
-
-
   return {
     player: player,
+
+    clearScreen: function() {
+      screen.clearLayer('sprites');
+      screen.clearLayer('maze');
+    },
 
     drawMaze: function(forceRedraw) {
       if (_needsRedraw || forceRedraw) {
@@ -160,6 +208,14 @@ var Level = function(level) {
         monster.animate();
       });
       player.animate();
+    },
+
+    onExit: function(callback) {
+      _onExit = callback;
+    },
+
+    isActive: function() {
+      return _active;
     }
   };
 };
