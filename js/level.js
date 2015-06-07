@@ -160,6 +160,17 @@ var Level = function(level) {
     }
   };
 
+  var _drawMaze = function() {
+    screen.clearLayer('maze');
+    for(var y = 0; y < 40; y++) {
+      for(var x = 0; x < 64; x++) {
+        screen.drawBlock('maze', x, y, getBlock('type', x, y));
+      }
+    }
+    _needsRedraw = false;
+  };
+
+
   var player = new Movable(level.info.start.x, level.info.start.y,
                            Direction.LEFT, {type: Block.PLAYER,
                             collisionCallback: playerCollision,
@@ -178,19 +189,13 @@ var Level = function(level) {
                  );
   });
 
-  var _drawMaze = function() {
-    screen.clearLayer('maze');
-    for(var y = 0; y < 40; y++) {
-      for(var x = 0; x < 64; x++) {
-        screen.drawBlock('maze', x, y, getBlock('type', x, y));
-      }
-    }
-    _needsRedraw = false;
-  };
-
-
   return {
     player: player,
+
+    clearScreen: function() {
+      screen.clearLayer('sprites');
+      screen.clearLayer('maze');
+    },
 
     drawMaze: function(forceRedraw) {
       if (_needsRedraw || forceRedraw) {

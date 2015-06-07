@@ -42,7 +42,7 @@ var Game = function(config) {
   var startLevel = function() {
     currentLevel = new Level(story.shift());
     currentLevel.onExit(levelCompleted);
-    currentLevel.drawMaze();
+    currentLevel.clearScreen();
     gameLoop();
   };
 
