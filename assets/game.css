@@ -26,3 +26,25 @@
 #sprite-library {
   display: none;
 }
+
+#score {
+  display: block;
+  border: 1px solid black;
+  height: 50px;
+  width: 800px;
+  margin: 0;
+  padding: 20px;
+}
+
+#score li {
+  display: block;
+  margin: 20px;
+  padding: 10px;
+  float: left;
+  width: 50px;
+  text-align: right;
+  border: 1px solid black;
+}
+
+#coins {
+}
