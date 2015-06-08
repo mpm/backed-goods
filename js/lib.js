@@ -8,6 +8,14 @@ var MonsterBrain = function(monster) {
   }
 };
 
+var Score = {
+  refresh: function(score) {
+    $('#coins').html(score.coins);
+    $('#snacks').html(score.snacks);
+    $('#lifes').html(score.lifes);
+  }
+};
+
 var Func = {
   SWITCH: 6,
 

@@ -116,36 +116,42 @@ var Level = function(level) {
         setBlock('type', x, y, Block.getBackground(block));
         score.coins += 1;
         triggerRedraw();
+        Score.refresh(score);
         break;
       case Block.ITEM_SNACK:
       case Block.ITEM_SNACK_BG2:
         setBlock('type', x, y, Block.getBackground(block));
         score.snacks += 1;
         triggerRedraw();
+        Score.refresh(score);
         break;
       case Block.ITEM_LIFE:
       case Block.ITEM_LIFE_BG2:
         setBlock('type', x, y, Block.getBackground(block));
         score.lifes += 1;
         triggerRedraw();
+        Score.refresh(score);
         break;
       case Block.KEY_RED:
       case Block.KEY_RED_BG2:
         setBlock('type', x, y, Block.getBackground(block));
         score.redKey = true;
         triggerRedraw();
+        Score.refresh(score);
         break;
       case Block.KEY_GREEN:
       case Block.KEY_GREEN_BG2:
         setBlock('type', x, y, Block.getBackground(block));
         score.greenKey = true;
         triggerRedraw();
+        Score.refresh(score);
         break;
       case Block.KEY_BLUE:
       case Block.KEY_BLUE_BG2:
         setBlock('type', x, y, Block.getBackground(block));
         score.blueKey = true;
         triggerRedraw();
+        Score.refresh(score);
         break;
     }
 
@@ -188,6 +194,7 @@ var Level = function(level) {
                               }, screen.renderMovable)
                  );
   });
+  Score.refresh(score);
 
   return {
     player: player,
