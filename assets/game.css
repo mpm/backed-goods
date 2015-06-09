@@ -59,11 +59,13 @@ body {
   height: 20px;
   width: 20px;
   float: left;
+  background-color: black;
+  background-repeat: no-repeat;
   background-size: 20px;
 }
 
 .key-found {
-  background: black url(sprites.png) no-repeat;
+  background-image: url(sprites.png);
 }
 
 #red-key.key    { background-position: 0 -660px; }
