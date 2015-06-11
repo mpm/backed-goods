@@ -1,3 +1,7 @@
+body {
+  font-family: 'Share Tech Mono';
+}
+
 #screen {
   perspective: 20px;
 }
@@ -37,14 +41,44 @@
 }
 
 #score li {
+  line-height: 10px;
   display: block;
   margin: 20px;
-  padding: 10px;
+  padding: 5px;
   float: left;
-  width: 50px;
+  width: 60px;
+  height: 10px;
   text-align: right;
-  border: 1px solid black;
+  color: white;
+  border: 5px solid black;
+  background: black url(sprites.png) no-repeat;
+  background-size: 20px;
 }
 
-#coins {
+.key {
+  height: 20px;
+  width: 20px;
+  float: left;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
+.key-found {
+  background-image: url(sprites.png);
+}
+
+#red-key.key    { background-position: 0 -660px; }
+#green-key.key  { background-position: 0 -680px; }
+#blue-key.key   { background-position: 0 -700px; }
+
+
+li#coins  { background-position: 0 -440px; }
+li#snacks { background-position: 0 -480px; }
+li#lifes  { background-position: 0 -460px; }
+
+li#items  {
+  background-image: none;
+  padding: 0;
+  height: 20px;
 }

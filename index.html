@@ -3,6 +3,7 @@
   <head>
     <title>Baked Goods</title>
     <link rel="stylesheet" href="assets/game.css" />
+    <link href='http://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="js/vendor/lodash.min.js"></script>
     <script type="text/javascript" src="js/vendor/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="assets/level-data.js"></script>
@@ -18,10 +19,14 @@
   <body>
   <img src='assets/sprites.png' id='sprite-library'/>
   <ul id="score">
-    <li id="coins"></div>
-    <li id="snacks"></div>
-    <li id="lifes"></div>
-    <li id="items"></div>
+    <li id="coins">0</li>
+    <li id="snacks">0</li>
+    <li id="lifes">0</li>
+    <li id="items">
+      <div class='key key-found' id='red-key'></div>
+      <div class='key' id='green-key'></div>
+      <div class='key' id='blue-key'></div>
+    </li>
   </ul>
   <div id="screen">
     <div id="transform">

@@ -9,10 +9,20 @@ var MonsterBrain = function(monster) {
 };
 
 var Score = {
+  _showKey: function(score, color) {
+    if (score[color + 'Key']) {
+      $('#' + color + '-key').addClass('key-found');
+    } else {
+      $('#' + color + '-key').removeClass('key-found');
+    }
+  },
   refresh: function(score) {
     $('#coins').html(score.coins);
     $('#snacks').html(score.snacks);
     $('#lifes').html(score.lifes);
+    this._showKey(score, 'red');
+    this._showKey(score, 'green');
+    this._showKey(score, 'blue');
   }
 };
 

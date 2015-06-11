@@ -6,10 +6,13 @@ var Movable = function(x, y, direction, options, renderCallback) {
   var factor = (1 / step);
   var _x = x * factor;
   var _y = y * factor;
+  var _oldX = x;
+  var _oldY = y;
   var _targetX = _x;
   var _targetY = _y;
   var _renderCallback = renderCallback;
   var _moving = false;
+  var _inPipe = false;
 
   return {
     changeDirection: function(newDirection) {
@@ -49,10 +52,13 @@ var Movable = function(x, y, direction, options, renderCallback) {
         options.onAnimate(this);
       }
       if (_moving) {
-        if (_x < _targetX) { _x += speed; }
-        if (_x > _targetX) { _x -= speed; }
-        if (_y < _targetY) { _y += speed; }
-        if (_y > _targetY) { _y -= speed; }
+        var _speed = _inPipe ? 5 : speed;
+        _oldX = _x;
+        _oldY = _y;
+        if (_x < _targetX) { _x += _speed; }
+        if (_x > _targetX) { _x -= _speed; }
+        if (_y < _targetY) { _y += _speed; }
+        if (_y > _targetY) { _y -= _speed; }
 
         if (_moving && _x == _targetX && _y == _targetY) {
           _moving = false;
@@ -63,6 +69,7 @@ var Movable = function(x, y, direction, options, renderCallback) {
           if (options.getBlock) {
             var t = options.getBlock('type', _x / factor, _y / factor);
             if (Block.isPipe(t)) {
+              _inPipe = true;
               var newDir = null;
               switch(t) {
                 case Block.PIPE_LEFT_DOWN:
@@ -83,11 +90,13 @@ var Movable = function(x, y, direction, options, renderCallback) {
                   break;
               }
               this.move();
+            } else {
+              _inPipe = false;
             }
           }
         }
       }
-      renderCallback(_x / factor, _y / factor, options.type);
+      renderCallback(_x / factor, _y / factor, options.type, {oldX: _oldX / factor, oldY: _oldY / factor});
     }
   };
 };
