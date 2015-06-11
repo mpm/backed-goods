@@ -97,6 +97,11 @@ var Level = function(level) {
         return !Block.isPipePassable(blockType, direction);
       } else if (Block.isLockedDoor(blockType)) {
         return !unlockDoor(blockType, x, y);
+      } else if (player.isInPipe()) {
+        // some parts of certain level require that you exit a pipe onto
+        // a blocked field. this allows the player to move on that field,
+        // but once you slide off you cannot go back there.
+        return false;
       }
     }
     return blocked;
