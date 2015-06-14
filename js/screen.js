@@ -28,13 +28,28 @@ var Screen = function() {
                         //sWidth + padding * 2);
       }
       layer.save();
-      if (options.direction) {
-        layer.rotate(options.direction * Math.PI / 180);
+      layer.translate(sX + 5 * _magnify, sY + 5 * _magnify);
+      if (options && options.direction) {
+        var angle = 0;
+        var scale = 1;
+        switch (options.direction) {
+          case Direction.UP:
+            angle = -90;
+            break;
+          case Direction.DOWN:
+            angle = 90;
+            break;
+          case Direction.LEFT:
+            scale = -1;
+            break;
+        }
+        layer.rotate(angle * Math.PI / 180);
+        layer.scale(scale, 1);
       }
       layer.drawImage(sprites,
           0, (index - 1) * 10,
          10, 10,
-          sX, sY, sWidth, sWidth);
+          -5 * _magnify, -5 * _magnify, sWidth, sWidth);
       layer.restore();
   };
   return {
