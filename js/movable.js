@@ -96,7 +96,7 @@ var Movable = function(x, y, direction, options, renderCallback) {
           }
         }
       }
-      renderCallback(_x / factor, _y / factor, options.type, {oldX: _oldX / factor, oldY: _oldY / factor});
+      renderCallback(_x / factor, _y / factor, options.type, {direction: direction, oldX: _oldX / factor, oldY: _oldY / factor});
     },
     isInPipe: function() { return _inPipe; }
   };

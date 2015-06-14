@@ -27,10 +27,15 @@ var Screen = function() {
                         //sWidth + padding * 2,
                         //sWidth + padding * 2);
       }
+      layer.save();
+      if (options.direction) {
+        layer.rotate(options.direction * Math.PI / 180);
+      }
       layer.drawImage(sprites,
           0, (index - 1) * 10,
          10, 10,
           sX, sY, sWidth, sWidth);
+      layer.restore();
   };
   return {
     clearLayer: function(layerName) {
