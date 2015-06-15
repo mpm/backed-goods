@@ -1,5 +1,9 @@
 var Screen = function() {
-  var _magnify = 2;
+  // when using lo res (original) sprites:
+  //var _magnify = 2;
+  //var _spriteDim = 10;
+  var _magnify = 1;
+  var _spriteDim = 20;
   var sprites = document.getElementById('sprite-library');
   var _maze = document.getElementById('sprites');
   var layers = {
@@ -15,17 +19,16 @@ var Screen = function() {
       var layer = layers[layerName];
       layer.save();
       layer.scale(_magnify, _magnify);
-      var sX = x * 10;
-      var sY = y * 10;
-      var sWidth = 10;
+      var sX = x * _spriteDim;
+      var sY = y * _spriteDim;
+      var sWidth = _spriteDim;
       if (options && options.oldX) {
-        var padding = 5;
-        layer.clearRect(options.oldX * 10,
-                        options.oldY * 10,
+        layer.clearRect(options.oldX * _spriteDim,
+                        options.oldY * _spriteDim,
                         sWidth,
                         sWidth);
       }
-      layer.translate(sX + 5, sY + 5);
+      layer.translate(sX + (_spriteDim / 2), sY + (_spriteDim / 2));
       if (options && options.direction) {
         var angle = 0;
         var scale = 1;
@@ -44,9 +47,9 @@ var Screen = function() {
         layer.scale(scale, 1);
       }
       layer.drawImage(sprites,
-          0, (index - 1) * 10,
-         10, 10,
-          -5, -5, sWidth, sWidth);
+          0, (index - 1) * _spriteDim,
+         sWidth, sWidth,
+          -(sWidth / 2), -(sWidth / 2), sWidth, sWidth);
       layer.restore();
   };
   return {
