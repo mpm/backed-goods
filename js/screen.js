@@ -11,20 +11,21 @@ var Screen = function() {
   };
 
   var _drawBlock = function(layerName, x, y, index, options) {
-      layer.save();
       if (index == 0) { index = 99 };
-      var sX = x * 10 * _magnify;
-      var sY = y * 10 * _magnify;
-      var sWidth = 10 * _magnify;
       var layer = layers[layerName];
+      layer.save();
+      layer.scale(_magnify, _magnify);
+      var sX = x * 10;
+      var sY = y * 10;
+      var sWidth = 10;
       if (options && options.oldX) {
         var padding = 5;
-        layer.clearRect(options.oldX * 10 * _magnify,
-                        options.oldY * 10 * _magnify,
+        layer.clearRect(options.oldX * 10,
+                        options.oldY * 10,
                         sWidth,
                         sWidth);
       }
-      layer.translate(sX + 5 * _magnify, sY + 5 * _magnify);
+      layer.translate(sX + 5, sY + 5);
       if (options && options.direction) {
         var angle = 0;
         var scale = 1;
@@ -45,7 +46,7 @@ var Screen = function() {
       layer.drawImage(sprites,
           0, (index - 1) * 10,
          10, 10,
-          -5 * _magnify, -5 * _magnify, sWidth, sWidth);
+          -5, -5, sWidth, sWidth);
       layer.restore();
   };
   return {
