@@ -11,6 +11,7 @@ var Screen = function() {
   };
 
   var _drawBlock = function(layerName, x, y, index, options) {
+      layer.save();
       if (index == 0) { index = 99 };
       var sX = x * 10 * _magnify;
       var sY = y * 10 * _magnify;
@@ -22,12 +23,7 @@ var Screen = function() {
                         options.oldY * 10 * _magnify,
                         sWidth,
                         sWidth);
-        //layer.clearRect(sX - padding,
-                        //sY - padding,
-                        //sWidth + padding * 2,
-                        //sWidth + padding * 2);
       }
-      layer.save();
       layer.translate(sX + 5 * _magnify, sY + 5 * _magnify);
       if (options && options.direction) {
         var angle = 0;
