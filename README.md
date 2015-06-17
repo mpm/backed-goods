@@ -58,6 +58,7 @@ a strong passion for one-letter variable names back then).
 * Collision detection for monsters
 * Collect baked goods, coins and bonus lifes
 * Make monsters move around
+* Rotation of player sprite
 
 ### Yet to be done
 
