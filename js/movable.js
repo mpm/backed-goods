@@ -99,6 +99,9 @@ var Movable = function(x, y, direction, options, renderCallback) {
       var block = (options.animation && options.animation.length > 0) ? options.animation.pop() : options.type;
       renderCallback(_x / factor, _y / factor, block, {direction: direction, oldX: _oldX / factor, oldY: _oldY / factor});
     },
+    setSpriteAnimation: function(animation) {
+      options.animation = animation;
+    },
     isInPipe: function() { return _inPipe; }
   };
 };

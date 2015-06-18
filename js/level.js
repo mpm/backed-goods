@@ -111,6 +111,10 @@ var Level = function(level) {
     return Flag.isBlockedForMonster(getBlock('flags', x, y));
   };
 
+  var snackAnimation = function() {
+    player.setSpriteAnimation([1,1,2,2,3,3,4,4]);
+  };
+
   var handleBlock = function(x, y) {
     var block = getBlock('type', x, y);
     var func = getBlock('func', x, y);
@@ -119,6 +123,7 @@ var Level = function(level) {
       case Block.ITEM_COIN:
       case Block.ITEM_COIN_BG2:
         setBlock('type', x, y, Block.getBackground(block));
+        snackAnimation();
         score.coins += 1;
         triggerRedraw();
         Score.refresh(score);
@@ -126,6 +131,7 @@ var Level = function(level) {
       case Block.ITEM_SNACK:
       case Block.ITEM_SNACK_BG2:
         setBlock('type', x, y, Block.getBackground(block));
+        snackAnimation();
         score.snacks += 1;
         triggerRedraw();
         Score.refresh(score);
