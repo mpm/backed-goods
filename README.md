@@ -66,6 +66,5 @@ a strong passion for one-letter variable names back then).
 * Check for never versions of level data as some levels cannot be
   completed atm.
 * Make the screen smaller/scrollable?
-* Animation/rotation of player sprite
 * Game states (intro screen, advancing to next level, etc.)
 
