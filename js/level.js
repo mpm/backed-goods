@@ -97,6 +97,11 @@ var Level = function(level) {
         return !Block.isPipePassable(blockType, direction);
       } else if (Block.isLockedDoor(blockType)) {
         return !unlockDoor(blockType, x, y);
+      } else if (player.isInPipe()) {
+        // some parts of certain level require that you exit a pipe onto
+        // a blocked field. this allows the player to move on that field,
+        // but once you slide off you cannot go back there.
+        return false;
       }
     }
     return blocked;
@@ -104,6 +109,10 @@ var Level = function(level) {
 
   var monsterCollision = function(x, y) {
     return Flag.isBlockedForMonster(getBlock('flags', x, y));
+  };
+
+  var snackAnimation = function() {
+    player.setSpriteAnimation([1,1,2,2,3,3,4,4]);
   };
 
   var handleBlock = function(x, y) {
@@ -114,6 +123,7 @@ var Level = function(level) {
       case Block.ITEM_COIN:
       case Block.ITEM_COIN_BG2:
         setBlock('type', x, y, Block.getBackground(block));
+        snackAnimation();
         score.coins += 1;
         triggerRedraw();
         Score.refresh(score);
@@ -121,6 +131,7 @@ var Level = function(level) {
       case Block.ITEM_SNACK:
       case Block.ITEM_SNACK_BG2:
         setBlock('type', x, y, Block.getBackground(block));
+        snackAnimation();
         score.snacks += 1;
         triggerRedraw();
         Score.refresh(score);

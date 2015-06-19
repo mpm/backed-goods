@@ -54,12 +54,17 @@ a strong passion for one-letter variable names back then).
 * Load maze and monster data from JSON
 * Draw monsters and player
 * Transport player automatically when entering tubes
+* Trigger level events (keys and switches)
+* Collision detection for monsters
+* Collect baked goods, coins and bonus lifes
+* Make monsters move around
+* Rotation of player sprite
 
 ### Yet to be done
 
-* Collision detection for monsters
-* Trigger level events (keys and switches)
-* Collect baked goods, coins and bonus lifes
-* Make monsters move around
+* Die when running into monsters
+* Check for never versions of level data as some levels cannot be
+  completed atm.
+* Make the screen smaller/scrollable?
 * Game states (intro screen, advancing to next level, etc.)
 

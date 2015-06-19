@@ -1,5 +1,9 @@
 var Screen = function() {
-  var _magnify = 2;
+  // when using lo res (original) sprites:
+  //var _magnify = 2;
+  //var _spriteDim = 10;
+  var _magnify = 1;
+  var _spriteDim = 20;
   var sprites = document.getElementById('sprite-library');
   var _maze = document.getElementById('sprites');
   var layers = {
@@ -12,25 +16,41 @@ var Screen = function() {
 
   var _drawBlock = function(layerName, x, y, index, options) {
       if (index == 0) { index = 99 };
-      var sX = x * 10 * _magnify;
-      var sY = y * 10 * _magnify;
-      var sWidth = 10 * _magnify;
       var layer = layers[layerName];
+      layer.save();
+      layer.scale(_magnify, _magnify);
+      var sX = x * _spriteDim;
+      var sY = y * _spriteDim;
+      var sWidth = _spriteDim;
       if (options && options.oldX) {
-        var padding = 5;
-        layer.clearRect(options.oldX * 10 * _magnify,
-                        options.oldY * 10 * _magnify,
+        layer.clearRect(options.oldX * _spriteDim,
+                        options.oldY * _spriteDim,
                         sWidth,
                         sWidth);
-        //layer.clearRect(sX - padding,
-                        //sY - padding,
-                        //sWidth + padding * 2,
-                        //sWidth + padding * 2);
+      }
+      layer.translate(sX + (_spriteDim / 2), sY + (_spriteDim / 2));
+      if (options && options.direction) {
+        var angle = 0;
+        var scale = 1;
+        switch (options.direction) {
+          case Direction.UP:
+            angle = -90;
+            break;
+          case Direction.DOWN:
+            angle = 90;
+            break;
+          case Direction.LEFT:
+            scale = -1;
+            break;
+        }
+        layer.rotate(angle * Math.PI / 180);
+        layer.scale(scale, 1);
       }
       layer.drawImage(sprites,
-          0, (index - 1) * 10,
-         10, 10,
-          sX, sY, sWidth, sWidth);
+          0, (index - 1) * _spriteDim,
+         sWidth, sWidth,
+          -(sWidth / 2), -(sWidth / 2), sWidth, sWidth);
+      layer.restore();
   };
   return {
     clearLayer: function(layerName) {
