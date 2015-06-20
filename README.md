@@ -67,4 +67,4 @@ a strong passion for one-letter variable names back then).
   completed atm.
 * Make the screen smaller/scrollable?
 * Game states (intro screen, advancing to next level, etc.)
-
+* Fog
