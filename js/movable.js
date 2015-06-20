@@ -18,6 +18,9 @@ var Movable = function(x, y, direction, options, renderCallback) {
     changeDirection: function(newDirection) {
       direction = newDirection;
     },
+    getPosition: function() {
+      return {x: _targetX / factor, y: _targetY / factor};
+    },
     move: function() {
       switch (direction) {
         case Direction.LEFT:
