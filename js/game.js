@@ -39,9 +39,17 @@ var Game = function(config) {
     }
   };
 
+  var death = function(score) {
+  };
+
+  var gameOver = function(score) {
+    alert('game over!');
+  };
+
   var startLevel = function() {
-    currentLevel = new Level(story.shift());
-    currentLevel.onExit(levelCompleted);
+    currentLevel = new Level(story.shift(), { onExit: levelCompleted,
+                                              onDeath: death,
+                                              onGameOver: gameOver });
     currentLevel.clearScreen();
     gameLoop();
   };
