@@ -1,12 +1,11 @@
-var Level = function(level) {
+var Level = function(level, options) {
   var _active = true;
   var screen = new Screen();
   var _level = level;
-  var _onExit = null;
   var score = {
     snacks: 0,
     coins: 0,
-    lifes: 0,
+    lifes: 1,
 
     redKey: false,
     greenKey: false,
@@ -110,7 +109,11 @@ var Level = function(level) {
   var monsterCollision = function(x, y) {
     if (player.getPosition().x == x &&
         player.getPosition().y == y) {
-      score.lifes--;
+      if (score.lifes-- < 1) {
+        options.onGameOver(score);
+      } else {
+        options.onDeath(score);
+      }
       Score.refresh(score);
     }
 
@@ -172,9 +175,9 @@ var Level = function(level) {
         break;
     }
 
-    if (func == Func.EXIT && _onExit) {
+    if (func == Func.EXIT) {
       _active = false;
-      _onExit(score);
+      options.onExit(score);
     }
 
     if (func == Func.SWITCH) {
@@ -232,10 +235,6 @@ var Level = function(level) {
         monster.animate();
       });
       player.animate();
-    },
-
-    onExit: function(callback) {
-      _onExit = callback;
     },
 
     isActive: function() {
