@@ -14,7 +14,7 @@ var Game = function(config) {
 
   var gameStep = function() {
     var player = currentLevel.player;
-    if (currentLevel.isActive()) {
+    if (currentLevel.isActive() && !player.isInPipe()) {
       if (input.isDown('UP')) {
         player.changeDirection(Direction.UP);
         player.move();
