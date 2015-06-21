@@ -110,8 +110,8 @@ var Level = function(level) {
   var monsterCollision = function(x, y) {
     if (player.getPosition().x == x &&
         player.getPosition().y == y) {
-      console.log('busted');
-      alert('player died');
+      score.lifes--;
+      Score.refresh(score);
     }
 
     return Flag.isBlockedForMonster(getBlock('flags', x, y));
