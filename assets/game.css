@@ -3,7 +3,6 @@ body {
 }
 
 #screen {
-  perspective: 20px;
 }
 
 .layer {
@@ -15,7 +14,10 @@ body {
 }
 
 #transform {
-  /*transform: rotateX(1deg);*/
+  width: 1024px;
+  height: 768px;
+  overflow: hidden;
+  transform: translate3d(0,0,0);
 }
 
 #maze {
