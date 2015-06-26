@@ -19,7 +19,12 @@ var Movable = function(x, y, direction, options, renderCallback) {
       direction = newDirection;
     },
     getPosition: function() {
-      return {x: _targetX / factor, y: _targetY / factor};
+      return {
+        x: _targetX / factor,
+        y: _targetY / factor,
+        currentX: _x / factor,
+        currentY: _y / factor
+      };
     },
     move: function() {
       switch (direction) {

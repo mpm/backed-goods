@@ -235,8 +235,8 @@ var Level = function(level, options) {
         monster.animate();
       });
       player.animate();
-      $('#transform').scrollLeft(player.getPosition().x * 20 - 640);
-      $('#transform').scrollTop(player.getPosition().y * 20 - 400);
+      $('#transform').scrollLeft(player.getPosition().currentX * 20 - 640);
+      $('#transform').scrollTop(player.getPosition().currentY * 20 - 400);
     },
 
     isActive: function() {
