@@ -1,6 +1,6 @@
 # Baked Goods 2015
 
-A JavaScript port of a Turbo Pascal DOS game I created in 1995.
+A JavaScript port of a Turbo Pascal DOS game I created back in the days.
 
 ## About
 
