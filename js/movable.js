@@ -45,6 +45,13 @@ var Movable = function(x, y, direction, options, renderCallback) {
         var plannedTargetX = _targetX + relativeX * factor;
         var plannedTargetY = _targetY + relativeY * factor;
 
+        if (plannedTargetX < 0 ||
+            plannedTargetY < 0 ||
+            plannedTargetX > 64 * factor ||
+            plannedTargetY > 40 * factor) {
+          return false;
+        }
+
         if (options.collisionCallback &&
             options.collisionCallback(plannedTargetX / factor, plannedTargetY / factor, direction)) {
           return false;
