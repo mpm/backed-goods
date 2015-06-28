@@ -235,8 +235,11 @@ var Level = function(level, options) {
         monster.animate();
       });
       player.animate();
-      $('#screen').scrollLeft(player.getPosition().currentX * 20 - 640);
-      $('#screen').scrollTop(player.getPosition().currentY * 20 - 400);
+      // Calculation:
+      // padding - (viewport width / 2) = puts the tile at 0,0 in the center of the viewport
+      // so after this, substract player coordinates
+      $('#screen').scrollLeft(640 - (1024 / 2) + player.getPosition().currentX * 20);
+      $('#screen').scrollTop(400 - (768 / 2) + player.getPosition().currentY * 20);
     },
 
     isActive: function() {

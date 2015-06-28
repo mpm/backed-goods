@@ -10,16 +10,20 @@ body {
 }
 
 .layer {
-  height: 800px;
   width: 1280px;
+  height: 800px;
   position: absolute;
   top: 0;
   left: 0;
+  padding-left: 640px;
+  padding-right: 640px;
+  padding-top: 400px;
+  padding-bottom: 400px;
 }
 
 #transform {
-  width: 1600px;
-  height: 2560px;
+  width: 2560px;
+  height: 1600px;
   background: grey;
 }
 
