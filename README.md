@@ -1,6 +1,6 @@
 # Baked Goods 2015
 
-A JavaScript port of a Turbo Pascal DOS game I created in 1995.
+A JavaScript port of a Turbo Pascal DOS game I created back in the days.
 
 ## About
 
@@ -59,12 +59,12 @@ a strong passion for one-letter variable names back then).
 * Collect baked goods, coins and bonus lifes
 * Make monsters move around
 * Rotation of player sprite
+* Die when running into monsters
 
 ### Yet to be done
 
-* Die when running into monsters
 * Check for never versions of level data as some levels cannot be
   completed atm.
 * Make the screen smaller/scrollable?
 * Game states (intro screen, advancing to next level, etc.)
-
+* Fog

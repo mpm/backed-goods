@@ -18,6 +18,14 @@ var Movable = function(x, y, direction, options, renderCallback) {
     changeDirection: function(newDirection) {
       direction = newDirection;
     },
+    getPosition: function() {
+      return {
+        x: _targetX / factor,
+        y: _targetY / factor,
+        currentX: _x / factor,
+        currentY: _y / factor
+      };
+    },
     move: function() {
       switch (direction) {
         case Direction.LEFT:
@@ -36,6 +44,13 @@ var Movable = function(x, y, direction, options, renderCallback) {
       } else {
         var plannedTargetX = _targetX + relativeX * factor;
         var plannedTargetY = _targetY + relativeY * factor;
+
+        if (plannedTargetX < 0 ||
+            plannedTargetY < 0 ||
+            plannedTargetX > 64 * factor ||
+            plannedTargetY > 40 * factor) {
+          return false;
+        }
 
         if (options.collisionCallback &&
             options.collisionCallback(plannedTargetX / factor, plannedTargetY / factor, direction)) {

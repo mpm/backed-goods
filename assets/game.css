@@ -1,21 +1,39 @@
 body {
   font-family: 'Share Tech Mono';
+  background: #aaa;
+}
+
+#centered {
+  margin-top: 20px;
+  width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 10px inset #ddd;
 }
 
 #screen {
-  perspective: 20px;
+  width: 1024px;
+  height: 768px;
+  overflow: hidden;
+  transform: translate3d(0,0,0);
 }
 
 .layer {
-  height: 800px;
   width: 1280px;
+  height: 800px;
   position: absolute;
   top: 0;
   left: 0;
+  padding-left: 640px;
+  padding-right: 640px;
+  padding-top: 400px;
+  padding-bottom: 400px;
 }
 
 #transform {
-  /*transform: rotateX(1deg);*/
+  width: 2560px;
+  height: 1600px;
+  background: grey;
 }
 
 #maze {
@@ -33,17 +51,17 @@ body {
 
 #score {
   display: block;
-  border: 1px solid black;
   height: 50px;
-  width: 800px;
+  width: 984px;
   margin: 0;
   padding: 20px;
+  background: #353;
 }
 
 #score li {
   line-height: 10px;
   display: block;
-  margin: 20px;
+  margin: 10px;
   padding: 5px;
   float: left;
   width: 60px;

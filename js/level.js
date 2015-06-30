@@ -1,12 +1,11 @@
-var Level = function(level) {
+var Level = function(level, options) {
   var _active = true;
   var screen = new Screen();
   var _level = level;
-  var _onExit = null;
   var score = {
     snacks: 0,
     coins: 0,
-    lifes: 0,
+    lifes: 1,
 
     redKey: false,
     greenKey: false,
@@ -108,6 +107,16 @@ var Level = function(level) {
   };
 
   var monsterCollision = function(x, y) {
+    if (player.getPosition().x == x &&
+        player.getPosition().y == y) {
+      if (score.lifes-- < 1) {
+        options.onGameOver(score);
+      } else {
+        options.onDeath(score);
+      }
+      Score.refresh(score);
+    }
+
     return Flag.isBlockedForMonster(getBlock('flags', x, y));
   };
 
@@ -166,9 +175,9 @@ var Level = function(level) {
         break;
     }
 
-    if (func == Func.EXIT && _onExit) {
+    if (func == Func.EXIT) {
       _active = false;
-      _onExit(score);
+      options.onExit(score);
     }
 
     if (func == Func.SWITCH) {
@@ -226,10 +235,11 @@ var Level = function(level) {
         monster.animate();
       });
       player.animate();
-    },
-
-    onExit: function(callback) {
-      _onExit = callback;
+      // Calculation:
+      // padding - (viewport width / 2) = puts the tile at 0,0 in the center of the viewport
+      // so after this, substract player coordinates
+      $('#screen').scrollLeft(640 - (1024 / 2) + player.getPosition().currentX * 20);
+      $('#screen').scrollTop(400 - (768 / 2) + player.getPosition().currentY * 20);
     },
 
     isActive: function() {

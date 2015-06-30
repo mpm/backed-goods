@@ -17,22 +17,24 @@
     <script type="text/javascript" src="js/game.js"></script>
   </head>
   <body>
-  <img src='assets/sprites2x.png' id='sprite-library'/>
-  <ul id="score">
-    <li id="coins">0</li>
-    <li id="snacks">0</li>
-    <li id="lifes">0</li>
-    <li id="items">
-      <div class='key key-found' id='red-key'></div>
-      <div class='key' id='green-key'></div>
-      <div class='key' id='blue-key'></div>
-    </li>
-  </ul>
-  <div id="screen">
-    <div id="transform">
-      <canvas class="layer" id="maze" width="1280" height="800"></canvas>
-      <canvas class="layer" id="sprites" width="1280" height="800"></canvas>
+    <img src='assets/sprites2x.png' id='sprite-library'/>
+    <div id="centered">
+      <ul id="score">
+        <li id="coins">0</li>
+        <li id="snacks">0</li>
+        <li id="lifes">0</li>
+        <li id="items">
+          <div class='key key-found' id='red-key'></div>
+          <div class='key' id='green-key'></div>
+          <div class='key' id='blue-key'></div>
+        </li>
+      </ul>
+      <div id="screen">
+        <div id="transform">
+          <canvas class="layer" id="maze" width="1280" height="800"></canvas>
+          <canvas class="layer" id="sprites" width="1280" height="800"></canvas>
+        </div>
+      </div>
     </div>
-  </div>
   </body>
 </html>
