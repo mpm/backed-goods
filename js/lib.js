@@ -43,6 +43,8 @@ var Func = {
         var key;
 
         switch(code) {
+        case 9:
+            key = 'TAB'; break;
         case 32:
             key = 'SPACE'; break;
         case 37:
