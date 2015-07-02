@@ -60,11 +60,12 @@ a strong passion for one-letter variable names back then).
 * Make monsters move around
 * Rotation of player sprite
 * Die when running into monsters
+* Make the screen smaller/scrollable
 
 ### Yet to be done
 
 * Check for never versions of level data as some levels cannot be
   completed atm.
-* Make the screen smaller/scrollable?
 * Game states (intro screen, advancing to next level, etc.)
+* Show mini map when hitting tab
 * Fog
