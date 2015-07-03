@@ -43,8 +43,6 @@ var Func = {
         var key;
 
         switch(code) {
-        case 9:
-            key = 'TAB'; break;
         case 32:
             key = 'SPACE'; break;
         case 37:
@@ -81,6 +79,15 @@ var Func = {
         },
         keysUp: function() {
           return pressedKeys == {};
+        },
+        wasPressed: function(key) {
+          var pressed = pressedKeys[key.toUpperCase()];
+          if (pressed) {
+            pressedKeys[key.toUpperCase()] = false;
+            return true;
+          }
+          return false;
         }
     };
+
 })();

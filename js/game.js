@@ -14,8 +14,8 @@ var Game = function(config) {
 
   var gameStep = function() {
     var player = currentLevel.player;
-    if (input.isDown('TAB')) {
-      console.log('show map');
+    if (input.wasPressed('SPACE')) {
+      console.log('map toggled');
     }
     if (currentLevel.isActive() && !player.isInPipe()) {
       if (input.isDown('UP')) {
