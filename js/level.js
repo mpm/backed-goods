@@ -2,6 +2,7 @@ var Level = function(level, options) {
   var _active = true;
   var screen = new Screen();
   var _level = level;
+  var fog = new Array(64 * 40);
   var score = {
     snacks: 0,
     coins: 0,
