@@ -2,7 +2,7 @@ var Level = function(level, options) {
   var _active = true;
   var screen = new Screen();
   var _level = level;
-  var fog = new Array(64 * 40);
+  var fog = new Array(Config.level.width * Config.level.height);
   var score = {
     snacks: 0,
     coins: 0,
@@ -22,11 +22,11 @@ var Level = function(level, options) {
   };
 
   var getBlock = function(attribute, x, y) {
-    return _level.blocks.current[attribute][x * 40 + y];
+    return _level.blocks.current[attribute][x * Config.level.height + y];
   };
 
   var setBlock = function(attribute, x, y, value) {
-    _level.blocks.current[attribute][x * 40 + y] = value;
+    _level.blocks.current[attribute][x * Config.level.height + y] = value;
   };
 
   var switchBlocksById = function(flags) {
@@ -189,8 +189,8 @@ var Level = function(level, options) {
 
   var _drawMaze = function() {
     screen.clearLayer('maze');
-    for(var y = 0; y < 40; y++) {
-      for(var x = 0; x < 64; x++) {
+    for(var y = 0; y < Config.level.height; y++) {
+      for(var x = 0; x < Config.level.width; x++) {
         screen.drawBlock('maze', x, y, getBlock('type', x, y));
       }
     }
