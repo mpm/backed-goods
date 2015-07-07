@@ -239,8 +239,8 @@ var Level = function(level, options) {
       // Calculation:
       // padding - (viewport width / 2) = puts the tile at 0,0 in the center of the viewport
       // so after this, substract player coordinates
-      $('#screen').scrollLeft(640 - (1024 / 2) + player.getPosition().currentX * 20);
-      $('#screen').scrollTop(400 - (768 / 2) + player.getPosition().currentY * 20);
+      $('#screen').scrollLeft((Config.level.width * Config.viewPort.blockSize) - (Config.viewPort.width / 2) + player.getPosition().currentX * 20);
+      $('#screen').scrollTop((Config.level.height * Config.viewPort.blockSize) - (Config.viewPort.height / 2) + player.getPosition().currentY * 20);
     },
 
     isActive: function() {
