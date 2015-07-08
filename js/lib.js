@@ -35,7 +35,13 @@ var Func = {
   EXIT: 8
 };
 
+var Resizer = {
+  init: function() {
+  }
+};
+
 (function() {
+    Resizer.init();
     var pressedKeys = {};
 
     function setKey(event, status) {
