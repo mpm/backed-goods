@@ -37,6 +37,14 @@ var Func = {
 
 var Resizer = {
   init: function() {
+    var width = Config.level.width * Config.viewPort.blockSize;
+    var height = Config.level.height * Config.viewPort.blockSize;
+    $('.layer').attr('width', width)
+                .attr('height', height)
+                .css('width', width + 'px')
+                .css('height', height + 'px');
+    //$('.layer').attr('width', 500)
+                //.attr('height', 500);
   }
 };
 

@@ -19,15 +19,15 @@ body {
 }
 
 .layer {
-  width: 1280px;
-  height: 800px;
+  /*width: 1280px;*/
+  /*height: 800px;*/
   position: absolute;
   top: 0;
   left: 0;
-  padding-left: 640px;
-  padding-right: 640px;
-  padding-top: 400px;
-  padding-bottom: 400px;
+  /*padding-left: 640px;*/
+  /*padding-right: 640px;*/
+  /*padding-top: 400px;*/
+  /*padding-bottom: 400px;*/
 }
 
 #transform {
