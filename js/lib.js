@@ -39,6 +39,10 @@ var Resizer = {
   init: function() {
     var width = Config.level.width * Config.viewPort.blockSize * 2;
     var height = Config.level.height * Config.viewPort.blockSize * 2;
+
+    $('#world').css('width', width + 'px')
+                .css('height', height + 'px');
+
     $('.layer').attr('width', width)
                 .attr('height', height)
                 .css('width', width + 'px')
