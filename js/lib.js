@@ -37,8 +37,8 @@ var Func = {
 
 var Resizer = {
   init: function() {
-    var width = Config.level.width * Config.viewPort.blockSize;
-    var height = Config.level.height * Config.viewPort.blockSize;
+    var width = Config.level.width * Config.viewPort.blockSize * 2;
+    var height = Config.level.height * Config.viewPort.blockSize * 2;
     $('.layer').attr('width', width)
                 .attr('height', height)
                 .css('width', width + 'px')
@@ -48,7 +48,7 @@ var Resizer = {
   }
 };
 
-(function() {
+$(function() {
     Resizer.init();
     var pressedKeys = {};
 
@@ -104,4 +104,4 @@ var Resizer = {
         }
     };
 
-})();
+});
