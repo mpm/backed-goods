@@ -5,7 +5,7 @@ body {
 
 #centered {
   margin-top: 20px;
-  width: 1024px;
+  width: 640px;
   margin-left: auto;
   margin-right: auto;
   border: 10px inset #ddd;
@@ -29,8 +29,6 @@ body {
 }
 
 #world {
-  width: 2560px;
-  height: 1600px;
   background: grey;
 }
 
@@ -50,7 +48,7 @@ body {
 #score {
   display: block;
   height: 50px;
-  width: 984px;
+  width: 600px;
   margin: 0;
   padding: 20px;
   background: #353;

@@ -5,7 +5,7 @@ var Config = {
   },
   viewPort: {
     blockSize: 10,
-    width: 1024,
-    height: 768
+    width: 640,
+    height: 480
   }
 };
