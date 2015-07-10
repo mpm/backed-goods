@@ -43,6 +43,9 @@ var Resizer = {
                 .attr('height', height)
                 .css('width', width + 'px')
                 .css('height', height + 'px');
+
+    $('#screen').css('width', Config.viewPort.width + 'px')
+                .css('height', Config.viewPort.height + 'px');
     //$('.layer').attr('width', 500)
                 //.attr('height', 500);
   }
