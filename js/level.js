@@ -2,6 +2,7 @@ var Level = function(level, options) {
   var _active = true;
   var screen = new Screen();
   var _level = level;
+  var fog = new Array(Config.level.width * Config.level.height);
   var score = {
     snacks: 0,
     coins: 0,
@@ -21,11 +22,11 @@ var Level = function(level, options) {
   };
 
   var getBlock = function(attribute, x, y) {
-    return _level.blocks.current[attribute][x * 40 + y];
+    return _level.blocks.current[attribute][x * Config.level.height + y];
   };
 
   var setBlock = function(attribute, x, y, value) {
-    _level.blocks.current[attribute][x * 40 + y] = value;
+    _level.blocks.current[attribute][x * Config.level.height + y] = value;
   };
 
   var switchBlocksById = function(flags) {
@@ -188,8 +189,8 @@ var Level = function(level, options) {
 
   var _drawMaze = function() {
     screen.clearLayer('maze');
-    for(var y = 0; y < 40; y++) {
-      for(var x = 0; x < 64; x++) {
+    for(var y = 0; y < Config.level.height; y++) {
+      for(var x = 0; x < Config.level.width; x++) {
         screen.drawBlock('maze', x, y, getBlock('type', x, y));
       }
     }
@@ -235,11 +236,8 @@ var Level = function(level, options) {
         monster.animate();
       });
       player.animate();
-      // Calculation:
-      // padding - (viewport width / 2) = puts the tile at 0,0 in the center of the viewport
-      // so after this, substract player coordinates
-      $('#screen').scrollLeft(640 - (1024 / 2) + player.getPosition().currentX * 20);
-      $('#screen').scrollTop(400 - (768 / 2) + player.getPosition().currentY * 20);
+      $('#viewport').scrollLeft(player.getPosition().currentX * 20 - (Config.viewPort.width / 2))
+                    .scrollTop(player.getPosition().currentY * 20 - (Config.viewPort.height / 2));
     },
 
     isActive: function() {

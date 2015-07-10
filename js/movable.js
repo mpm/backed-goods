@@ -47,8 +47,8 @@ var Movable = function(x, y, direction, options, renderCallback) {
 
         if (plannedTargetX < 0 ||
             plannedTargetY < 0 ||
-            plannedTargetX > 64 * factor ||
-            plannedTargetY > 40 * factor) {
+            plannedTargetX > Config.level.width * factor ||
+            plannedTargetY > Config.level.height * factor) {
           return false;
         }
 

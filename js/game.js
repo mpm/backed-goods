@@ -14,6 +14,9 @@ var Game = function(config) {
 
   var gameStep = function() {
     var player = currentLevel.player;
+    if (input.wasPressed('SPACE')) {
+      console.log('map toggled');
+    }
     if (currentLevel.isActive() && !player.isInPipe()) {
       if (input.isDown('UP')) {
         player.changeDirection(Direction.UP);
@@ -58,6 +61,6 @@ var Game = function(config) {
 };
 
 window.onload = function() {
-  //var game = Game({levels: [4]});
-  var game = Game({levels: [0,1,2,3,4,5,6]});
+  var game = Game({levels: [2]});
+  //var game = Game({levels: [0,1,2,3,4,5,6]});
 };

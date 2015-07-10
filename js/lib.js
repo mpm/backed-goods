@@ -35,7 +35,28 @@ var Func = {
   EXIT: 8
 };
 
-(function() {
+var Resizer = {
+  init: function() {
+    var width = Config.level.width * Config.viewPort.blockSize * 2;
+    var height = Config.level.height * Config.viewPort.blockSize * 2;
+
+    $('#world').css('width', width + 'px')
+                .css('height', height + 'px');
+
+    $('.layer').attr('width', width)
+                .attr('height', height)
+                .css('width', width + 'px')
+                .css('height', height + 'px');
+
+    $('#viewport').css('width', Config.viewPort.width + 'px')
+                .css('height', Config.viewPort.height + 'px');
+    //$('.layer').attr('width', 500)
+                //.attr('height', 500);
+  }
+};
+
+$(function() {
+    Resizer.init();
     var pressedKeys = {};
 
     function setKey(event, status) {
@@ -79,6 +100,15 @@ var Func = {
         },
         keysUp: function() {
           return pressedKeys == {};
+        },
+        wasPressed: function(key) {
+          var pressed = pressedKeys[key.toUpperCase()];
+          if (pressed) {
+            pressedKeys[key.toUpperCase()] = false;
+            return true;
+          }
+          return false;
         }
     };
-})();
+
+});
