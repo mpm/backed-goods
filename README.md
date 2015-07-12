@@ -59,11 +59,11 @@ a strong passion for one-letter variable names back then).
 * Collect baked goods, coins and bonus lifes
 * Make monsters move around
 * Rotation of player sprite
-* Die when running into monsters
 * Make the screen smaller/scrollable
 
 ### Yet to be done
 
+* Properly die when running into monsters AND running out of lives
 * Check for never versions of level data as some levels cannot be
   completed atm.
 * Game states (intro screen, advancing to next level, etc.)
