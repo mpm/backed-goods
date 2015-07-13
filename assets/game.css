@@ -11,6 +11,10 @@ body {
   border: 10px inset #ddd;
 }
 
+#map {
+  background: black;
+}
+
 #viewport {
   overflow: hidden;
   transform: translate3d(0,0,0);
