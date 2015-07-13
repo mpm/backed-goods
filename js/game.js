@@ -2,6 +2,7 @@ var Game = function(config) {
   var story = _.map(config.levels, function(index) { return Levels[index]; });
   var currentLevel = null;
   var frameNeeded = true;
+  var mapActive = false;
 
   var gameLoop = function() {
     if (frameNeeded) {
@@ -12,28 +13,34 @@ var Game = function(config) {
     requestAnimationFrame(gameLoop);
   };
 
+  var toggleMap = function() {
+    mapActive = !mapActive;
+  };
+
   var gameStep = function() {
     var player = currentLevel.player;
     if (input.wasPressed('SPACE')) {
-      console.log('map toggled');
+      toggleMap();
     }
-    if (currentLevel.isActive() && !player.isInPipe()) {
-      if (input.isDown('UP')) {
-        player.changeDirection(Direction.UP);
-        player.move();
-      } else if (input.isDown('DOWN')) {
-        player.changeDirection(Direction.DOWN);
-        player.move();
-      } else if (input.isDown('LEFT')) {
-        player.changeDirection(Direction.LEFT);
-        player.move();
-      } else if (input.isDown('RIGHT')) {
-        player.changeDirection(Direction.RIGHT);
-        player.move();
+    if (!mapActive) {
+      if (currentLevel.isActive() && !player.isInPipe()) {
+        if (input.isDown('UP')) {
+          player.changeDirection(Direction.UP);
+          player.move();
+        } else if (input.isDown('DOWN')) {
+          player.changeDirection(Direction.DOWN);
+          player.move();
+        } else if (input.isDown('LEFT')) {
+          player.changeDirection(Direction.LEFT);
+          player.move();
+        } else if (input.isDown('RIGHT')) {
+          player.changeDirection(Direction.RIGHT);
+          player.move();
+        }
       }
+      currentLevel.drawMovables();
+      currentLevel.drawMaze();
     }
-    currentLevel.drawMovables();
-    currentLevel.drawMaze();
   };
 
   var levelCompleted = function(score) {
