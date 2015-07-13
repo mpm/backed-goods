@@ -15,7 +15,7 @@ var Screen = function() {
   };
 
   var _drawBlock = function(layerName, x, y, index, options) {
-      if (index == 0) { index = 99 };
+      if (index === 0) { index = 99; }
       var layer = layers[layerName];
       layer.save();
       layer.scale(_magnify, _magnify);
