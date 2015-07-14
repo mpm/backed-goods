@@ -15,6 +15,9 @@ var Game = function(config) {
 
   var toggleMap = function() {
     mapActive = !mapActive;
+    if (mapActive) {
+      currentLevel.drawMap();
+    }
     $('#map-div').toggle();
     $('#viewport').toggle();
   };
