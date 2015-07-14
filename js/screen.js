@@ -6,6 +6,7 @@ var Screen = function() {
   var _spriteDim = 20;
   var sprites = document.getElementById('sprite-library');
   var _maze = document.getElementById('sprites');
+  var map = document.getElementById('map');
   var layers = {
     maze: document.getElementById('maze').getContext('2d'),
     sprites: _maze.getContext('2d')
@@ -15,7 +16,7 @@ var Screen = function() {
   };
 
   var _drawBlock = function(layerName, x, y, index, options) {
-      if (index == 0) { index = 99 };
+      if (index === 0) { index = 99; }
       var layer = layers[layerName];
       layer.save();
       layer.scale(_magnify, _magnify);

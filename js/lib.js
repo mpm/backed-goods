@@ -50,8 +50,13 @@ var Resizer = {
 
     $('#viewport').css('width', Config.viewPort.width + 'px')
                 .css('height', Config.viewPort.height + 'px');
-    //$('.layer').attr('width', 500)
-                //.attr('height', 500);
+
+    $('#map-div').css('width', Config.viewPort.width + 'px')
+                .css('height', Config.viewPort.height + 'px');
+    $('#map').attr('width', Config.viewPort.width)
+             .attr('height', Config.viewPort.height)
+             .css('width', Config.viewPort.width + 'px')
+             .css('height', Config.viewPort.height + 'px');
   }
 };
 
