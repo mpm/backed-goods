@@ -51,8 +51,12 @@ var Resizer = {
     $('#viewport').css('width', Config.viewPort.width + 'px')
                 .css('height', Config.viewPort.height + 'px');
 
-    $('#map').css('width', Config.viewPort.width + 'px')
+    $('#map-div').css('width', Config.viewPort.width + 'px')
                 .css('height', Config.viewPort.height + 'px');
+    $('#map').attr('width', Config.viewPort.width)
+             .attr('height', Config.viewPort.height)
+             .css('width', Config.viewPort.width + 'px')
+             .css('height', Config.viewPort.height + 'px');
   }
 };
 
