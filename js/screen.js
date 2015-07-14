@@ -6,6 +6,7 @@ var Screen = function() {
   var _spriteDim = 20;
   var sprites = document.getElementById('sprite-library');
   var _maze = document.getElementById('sprites');
+  var map = document.getElementById('map');
   var layers = {
     maze: document.getElementById('maze').getContext('2d'),
     sprites: _maze.getContext('2d')
