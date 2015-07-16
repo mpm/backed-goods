@@ -251,20 +251,22 @@ var Level = function(level, options) {
       var sprites = document.getElementById('sprite-library');
       for(var y = 0; y < Config.level.height; y++) {
         for(var x = 0; x < Config.level.width; x++) {
-          var index = getBlock('type', x, y);
-          var _magnify = 0.5;
-          var _spriteDim = 20;
-          layer.save();
-          layer.scale(_magnify, _magnify);
-          var sX = x * _spriteDim;
-          var sY = y * _spriteDim;
-          var sWidth = _spriteDim;
-          layer.translate(sX + (_spriteDim / 2), sY + (_spriteDim / 2));
-          layer.drawImage(sprites,
-              0, (index - 1) * _spriteDim,
-             sWidth, sWidth,
-              -(sWidth / 2), -(sWidth / 2), sWidth, sWidth);
-          layer.restore();
+          if (fog[x + y * Config.level.width]) {
+            var index = getBlock('type', x, y);
+            var _magnify = 0.5;
+            var _spriteDim = 20;
+            layer.save();
+            layer.scale(_magnify, _magnify);
+            var sX = x * _spriteDim;
+            var sY = y * _spriteDim;
+            var sWidth = _spriteDim;
+            layer.translate(sX + (_spriteDim / 2), sY + (_spriteDim / 2));
+            layer.drawImage(sprites,
+                0, (index - 1) * _spriteDim,
+               sWidth, sWidth,
+                -(sWidth / 2), -(sWidth / 2), sWidth, sWidth);
+            layer.restore();
+          }
         }
       }
     },
