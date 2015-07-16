@@ -52,6 +52,17 @@ var Level = function(level, options) {
     }
   };
 
+  var clearFog = function(xPos, yPos) {
+    var w = Config.viewPort.width / Config.viewPort.blockSize / 2;
+    var h = Config.viewPort.height / Config.viewPort.blockSize / 2;
+    console.log(w, h);
+    for(var x = Math.max(xPos - (w / 2), 0); x < Math.min(Config.level.width, xPos + (w / 2)); x++) {
+      for(var y = Math.max(yPos - (h / 2), 0); y < Math.min(Config.level.height, yPos + (h / 2)); y++) {
+        fog[x + y * Config.level.width] = true;
+      }
+    }
+  };
+
   var triggerSwitch = function(x, y) {
     var flags = getBlock('flags', x, y);
     switchBlocksById(flags);
@@ -130,6 +141,8 @@ var Level = function(level, options) {
   var handleBlock = function(x, y) {
     var block = getBlock('type', x, y);
     var func = getBlock('func', x, y);
+
+    clearFog(x, y);
 
     switch (block) {
       case Block.ITEM_COIN:
