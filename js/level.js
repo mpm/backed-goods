@@ -3,6 +3,8 @@ var Level = function(level, options) {
   var screen = new Screen();
   var _level = level;
   var fog = new Array(Config.level.width * Config.level.height);
+  fog = _.map(fog, function(v) { return false; });
+
   var score = {
     snacks: 0,
     coins: 0,
