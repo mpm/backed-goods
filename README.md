@@ -60,6 +60,8 @@ a strong passion for one-letter variable names back then).
 * Make monsters move around
 * Rotation of player sprite
 * Make the screen smaller/scrollable
+* Show mini map when hitting tab
+* Fog
 
 ### Yet to be done
 
@@ -67,5 +69,3 @@ a strong passion for one-letter variable names back then).
 * Check for never versions of level data as some levels cannot be
   completed atm.
 * Game states (intro screen, advancing to next level, etc.)
-* Show mini map when hitting tab
-* Fog
