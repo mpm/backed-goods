@@ -73,6 +73,6 @@ var Game = function(config) {
 };
 
 window.onload = function() {
-  var game = Game({levels: [2]});
-  //var game = Game({levels: [0,1,2,3,4,5,6]});
+  //var game = Game({levels: [4]});
+  var game = Game({levels: [0,1,2,3,4,5,6]});
 };
