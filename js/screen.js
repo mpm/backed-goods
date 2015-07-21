@@ -24,8 +24,8 @@ var Screen = function() {
       var sY = y * _spriteDim;
       var sWidth = _spriteDim;
       if (options && options.oldX) {
-        layer.clearRect(options.oldX * _spriteDim,
-                        options.oldY * _spriteDim,
+        layer.clearRect(Math.max(0, options.oldX * _spriteDim),
+                        Math.max(0, options.oldY * _spriteDim),
                         sWidth,
                         sWidth);
       }

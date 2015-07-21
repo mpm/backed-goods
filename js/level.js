@@ -3,6 +3,8 @@ var Level = function(level, options) {
   var screen = new Screen();
   var _level = level;
   var fog = new Array(Config.level.width * Config.level.height);
+  fog = _.map(fog, function(v) { return false; });
+
   var score = {
     snacks: 0,
     coins: 0,
@@ -46,6 +48,16 @@ var Level = function(level, options) {
       if (altBlocks.func[blockNr] == Func.SWITCHABLE &&
         Flag.getSwitchId(altBlocks.flags[blockNr]) == switchId) {
         switchBlock(blockNr);
+      }
+    }
+  };
+
+  var clearFog = function(xPos, yPos) {
+    var w = Config.viewPort.width / Config.viewPort.blockSize / 2;
+    var h = Config.viewPort.height / Config.viewPort.blockSize / 2;
+    for(var x = Math.max(xPos - (w / 2), 0); x < Math.min(Config.level.width, xPos + (w / 2)); x++) {
+      for(var y = Math.max(yPos - (h / 2), 0); y < Math.min(Config.level.height, yPos + (h / 2)); y++) {
+        fog[x + y * Config.level.width] = true;
       }
     }
   };
@@ -128,6 +140,8 @@ var Level = function(level, options) {
   var handleBlock = function(x, y) {
     var block = getBlock('type', x, y);
     var func = getBlock('func', x, y);
+
+    clearFog(x, y);
 
     switch (block) {
       case Block.ITEM_COIN:
@@ -236,20 +250,22 @@ var Level = function(level, options) {
       var sprites = document.getElementById('sprite-library');
       for(var y = 0; y < Config.level.height; y++) {
         for(var x = 0; x < Config.level.width; x++) {
-          var index = getBlock('type', x, y);
-          var _magnify = 0.5;
-          var _spriteDim = 20;
-          layer.save();
-          layer.scale(_magnify, _magnify);
-          var sX = x * _spriteDim;
-          var sY = y * _spriteDim;
-          var sWidth = _spriteDim;
-          layer.translate(sX + (_spriteDim / 2), sY + (_spriteDim / 2));
-          layer.drawImage(sprites,
-              0, (index - 1) * _spriteDim,
-             sWidth, sWidth,
-              -(sWidth / 2), -(sWidth / 2), sWidth, sWidth);
-          layer.restore();
+          if (fog[x + y * Config.level.width]) {
+            var index = getBlock('type', x, y);
+            var _magnify = 0.5;
+            var _spriteDim = 20;
+            layer.save();
+            layer.scale(_magnify, _magnify);
+            var sX = x * _spriteDim;
+            var sY = y * _spriteDim;
+            var sWidth = _spriteDim;
+            layer.translate(sX + (_spriteDim / 2), sY + (_spriteDim / 2));
+            layer.drawImage(sprites,
+                0, (index - 1) * _spriteDim,
+               sWidth, sWidth,
+                -(sWidth / 2), -(sWidth / 2), sWidth, sWidth);
+            layer.restore();
+          }
         }
       }
     },
