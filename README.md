@@ -69,3 +69,4 @@ a strong passion for one-letter variable names back then).
 * Check for never versions of level data as some levels cannot be
   completed atm.
 * Game states (intro screen, advancing to next level, etc.)
+* Fix rendering error when sprites reach the left end of the screen
